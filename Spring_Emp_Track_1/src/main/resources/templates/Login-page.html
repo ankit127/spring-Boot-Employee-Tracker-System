@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login page</title>
+</head>
+<body>
+	<h3>My Login page</h3>
+
+	<form:form
+		action="${pageContext.request.contextPath}/authenticateTheUser"
+		method="POST">
+
+		<c:if test="${param.error != null}">
+
+			<i class="failed">Sorry ! You have entered invalid
+				username/password</i>
+		</c:if>
+
+		<p>
+			User Name : <input type="text" name="username" />
+
+		</p>
+
+		<p>
+			PassWord : <input type="text" name="password" />
+
+		</p>
+
+		<input type="submit" value="Login" />
+
+	</form:form>
+
+</body>
+</html>

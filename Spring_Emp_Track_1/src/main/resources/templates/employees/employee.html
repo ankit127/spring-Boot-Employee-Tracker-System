@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
+
+<title>Add Employee</title>
+
+
+<style>
+     
+              .error {color:RED}
+     </style>
+</head>
+<body>
+
+
+	<div class="container">
+
+		<h3>Employee Directory</h3>
+		<hr/>
+             
+		<p class="h4 mb-4">Save Employee</p>
+          <i>Fill Out the form. Asterik (*) means required.</i>
+         <hr/>
+        
+ 
+		<form th:action="@{/employees/save}" th:object="${Employee}"
+			method="POST">
+
+
+			<!-- Add hidden form field to handle update -->
+			<input type="hidden" th:field="*{Id}" />
+
+			<div class="field">
+				<input type="text" th:field="*{firstName}"
+					class="form-control mb-4 col-4" placeholder="First name">* 
+					<span
+					    th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+					    Name Error
+					</span>
+			</div>
+ 
+           <div class="field">			
+			<input type="text" th:field="*{lastName}"
+				class="form-control mb-4 col-4" placeholder="Last name">*
+				<span
+					    th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
+					    Name Error
+					</span> 
+		 </div>
+		 
+		 <div class="field">		
+			<input type="text" th:field="*{email}" class="form-control mb-4 col-4"
+				       placeholder="Email(example@gmail.com)">*
+				       <span
+					    th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+					    Name Error
+					</span>
+
+        </div>
+			<button type="submit" class="btn btn-info col-2">Save</button>
+
+		</form>
+
+		<hr />
+		<a th:href="@{/employees/list}">Back to Employees List</a>
+
+	</div>
+</body>
+</html>

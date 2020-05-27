@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="en" 
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Manger and Admin Page</title>
+</head>
+
+<body>
+        <h3>Welcome to Manger/Admin Special Page</h3>
+        <hr/>
+        
+        <div id="content" style="margin-top: 50px;">
+        <p> Next Month will have party in Taiwan.....Enjoy</p>
+        
+        </div>  
+         <hr/> 
+          
+	    <a th:href="@{/employees/list}">Back to Employees List</a>
+        
+</body>
+</html>
