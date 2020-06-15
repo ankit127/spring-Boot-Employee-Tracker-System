@@ -3,6 +3,8 @@ package com.ankit.springboot.emp.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,9 @@ import com.ankit.springboot.emp.entity.Employee;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
+	
+	Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class);
+	
 	@Autowired
 	private EmployeeJPARepository employeeJPARepository;
 
@@ -28,6 +33,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Employee findById(int theId) {
 		Optional<Employee> result = employeeJPARepository.findById(theId);
 
+		 
 		Employee theEmployee = null;
 
 		
@@ -40,6 +46,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			throw new RuntimeException("Did not find employee id - " + theId);
 		}
 
+		logger.info("Search Employee by ID");
 		return theEmployee;
 
 	}

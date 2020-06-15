@@ -5,8 +5,11 @@ import java.util.List;
 
 
 
+
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +29,8 @@ import com.ankit.springboot.emp.service.EmployeeService;
 public class EmployeeController {
 
 
+	Logger logger = LoggerFactory.getLogger(EmployeeController.class);
+	
 	@Autowired
 	private EmployeeService employeeService;
 	
@@ -44,7 +49,7 @@ public class EmployeeController {
 	    List<Employee> theEmployee = employeeService.findAll();
 		
 		model.addAttribute("Employee", theEmployee);
-		
+		logger.info("List of Employees");
 		return "/employees/list-employees";
 	}
 	
@@ -56,7 +61,9 @@ public class EmployeeController {
 		Employee theEmployee = new Employee();
 		
 		theModel.addAttribute("Employee", theEmployee);
-	
+		
+		logger.info("Show  Form to add Employee");
+		
 		return "/employees/employee";
 	}
 
@@ -74,6 +81,8 @@ public class EmployeeController {
 		// set employee as a model attribute to pre-populate the form
 		theModel.addAttribute("Employee", theEmployee);
 		
+		logger.info("Show Form to Update Employee");
+		
 		// send over to our form
 		return "/employees/employee";			
 	}
@@ -84,13 +93,14 @@ public class EmployeeController {
 		
 		if(theBindingResult.hasFieldErrors())
 		{
-			System.out.println("has error");
+			logger.info("Show Form has Error Employee" +theBindingResult);
 			return "/employees/employee";
 		}
 		else
 		{
 		// save the employee
-		employeeService.save(theEmployee);
+			logger.info("New Employee is added");
+		    employeeService.save(theEmployee);
 		
 		// use a redirect to prevent duplicate submissions
 		return "redirect:/employees/list";
@@ -101,7 +111,7 @@ public class EmployeeController {
 	public String deleteEmployee(@RequestParam("employeeId")int theId)
 	{
 		employeeService.deleteById(theId);
-		
+		logger.info("Employee is deleted");
 		return "redirect:/employees/list";
 	}
 	
@@ -122,6 +132,7 @@ public class EmployeeController {
 		// add to the spring model
 		theModel.addAttribute("Employee", theEmployees);
 		
+		logger.info("Search Employee");
 		// send to /employees/list
 		return "/employees/list-employees";
 		
