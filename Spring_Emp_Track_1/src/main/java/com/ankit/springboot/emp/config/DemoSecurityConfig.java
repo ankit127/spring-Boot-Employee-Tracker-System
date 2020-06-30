@@ -47,5 +47,6 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 				.exceptionHandling().accessDeniedPage("/access-denied");
 
 	}
+	
 
 }
